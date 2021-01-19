@@ -32,7 +32,8 @@ const createToken = (req, res, next) => {
         id: req.user.id,
         name: req.user.name,
         email: req.user.email,
-        lastname: req.user.lastname
+        lastname: req.user.lastname,
+        telephone_number: req.user.telephone_number
       }
 
     const token = jwt.sign(

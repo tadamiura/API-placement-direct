@@ -10,7 +10,6 @@ const checkUser = (req, res, next) => {
 	const mail = req.body.email
 	connection.query('SELECT * FROM user WHERE email = ?', mail, (err, result) => {
 		if (err) {
-            console.log('checkUser', err)
             return res.status(500).send('Internal server error')
 		} else if (result.length>0) {
 			return res.status(409).send('User already exists')
@@ -19,10 +18,11 @@ const checkUser = (req, res, next) => {
 		const user = {
 		name: req.body.name,
 		lastname: req.body.lastname,
-		email : req.body.email,
+        email : req.body.email,
+        telephone_number: req.body.telephone_number,
 		password: bcrypt.hashSync(req.body.password)
 		}
-		req.user = user
+        req.user = user
 		next()
 	})
 }
@@ -30,12 +30,10 @@ const checkUser = (req, res, next) => {
 const registerUserDb = (req, res, next) => {
 	  connection.query('INSERT INTO user SET ?', req.user, (err, result) => {
 			if (err) {
-                console.log('resgiterUserDb 1', err)
 				return res.status(500).send('Cannot register the user')
 			}
-			connection.query('SELECT id, name, lastname, email FROM user WHERE id = ?', result.insertId, (err, result) => {
+			connection.query('SELECT id, name, lastname, email, telephone_number FROM user WHERE id = ?', result.insertId, (err, result) => {
 				if (err) {
-                    console.log('resgiterUserDb 2')
 					return res.status(500).send('Internal server error')
 				}
 				// If all went well, records is an array, from which we use the 1st item
