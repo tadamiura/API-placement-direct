@@ -1,7 +1,7 @@
 const mysql = require('mysql2')
 require('dotenv').config()
 
-
+//In order to deploy
 const dbSettings = typeof process.env.CLEARDB_DATABASE_URL === 'string'
   ? process.env.CLEARDB_DATABASE_URL
   : {
