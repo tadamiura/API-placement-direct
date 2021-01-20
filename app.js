@@ -14,8 +14,10 @@ app.use(
   })
 )
 
-app.use('/api/auth', routes.Authentification),
+app.use('/api/auth', routes.Authentification)
+app.use('/api/contract', routes.Contract)
 app.use('/api/register', routes.Register)
+app.use('/api/user', routes.User)
 
 app.get('/api/verify', verifyToken, (req, res) => {
   return res.status(200).send('token verified')
