@@ -4,8 +4,6 @@ const { verifyToken } = require('../helper/auth.service')
 
 const router = express.Router() 
 
-
-
 /*
 USER'S INFORMATIONS
 */

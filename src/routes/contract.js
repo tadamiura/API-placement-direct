@@ -12,7 +12,6 @@ router.get('/', (req,res) => {
     ON contract.id = contract_user.contract_id
     JOIN user
     ON user.id = contract_user.user_id`
-    // const sql = `SELECT * FROM contract`
     connection.query(sql, (err, result) => {
         if (err) {
             res.status(500).send('Error to get the list of contracts')
